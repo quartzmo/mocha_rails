@@ -1,0 +1,3 @@
+# Mocha-Rails
+
+Ready soon!
