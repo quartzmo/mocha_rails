@@ -7,12 +7,15 @@ MochaRails integrates the [Mocha](http://visionmedia.github.com/mocha/) JavaScri
 MochaRails is a mountable Rails engine that serves a browser-based Mocha test suite, along with your production JavaScript files, via the Asset Pipeline.
 
 It loads [Expect](https://github.com/LearnBoost/expect.js) for assertions, although since Mocha is decoupled from the assertion library, you can
-use another if you choose. For example, if browsers become compatible with
+use another assertion library if you choose (or even write your own.) For example, if browsers become compatible with
 [Should](https://github.com/visionmedia/should.js), it would be a great choice.
+
+The Mocha interface system allows developers to choose their style of DSL. MochaRails is hardcoded for now to the
+"BDD" interface, but if you want to write in one of the other styles, open an issue and I will make it configurable.
 
 ## Installation
 
-In your Rails >= 3.1 app, add it to your `Gemfile`:
+In your Rails >= 3.1 app, **you must add** `gem 'mocha_rails'` to your `Gemfile`:
 
 ```
 group :test, :development do
@@ -22,23 +25,25 @@ end
 
 ## Configuration
 
-To access your Mocha test suite at `/mocha`, add the following line inside your Rails `config/routes.rb`,
+To access your Mocha test suite at `/mocha`, **you must add** the following line inside your Rails `config/routes.rb`,
 within the block passed to `draw`.
 
 ```
 mount MochaRails::Engine => "mocha" unless Rails.env.production?
 ```
 
-There is nothing special about the path `/mocha`, and you can use any path you like,
+There is nothing special about the path `/mocha`, and you can name any path you like,
 as long as it doesn't conflict with any of your existing application paths.
 
 ## Adding Mocha Tests
 
-You must create a `mocha-suite.js` or `mocha-suite.js.coffee` Sprockets manifest file in
+**You must create** a `mocha-suite.js` or `mocha-suite.js.coffee` Sprockets manifest file in
 one of these locations:
 
 * `test/javascripts`
+
 or
+
 * `spec/javascripts`
 
 This directory is also the location for your Mocha tests.
@@ -65,11 +70,13 @@ describe 'Array', ->
       expect(array.indexOf(4)).to.equal(-1)
 ```
 
-Start your server and go to `http://localhost:3000/mocha`, you should see Mocha's very attractive results page.
+Start your server and open `http://localhost:3000/mocha`. You should see Mocha's very attractive results page. If you
+see a completely blank page, check your JavaScript console for errors. If you see an almost blank page, with a
+few zeros in the upper right corner, you just need to add some tests.
 
 ## Credits
 
-* Chris Smith
+* Chris Smith (quartzmo)
 
 MochaRails was inspired by the design of [Jasminerice](https://github.com/bradphelan/jasminerice).
 
