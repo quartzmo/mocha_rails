@@ -10,6 +10,16 @@ It loads [Expect](https://github.com/LearnBoost/expect.js) for assertions, altho
 use another if you choose. For example, if browsers become compatible with
 [Should](https://github.com/visionmedia/should.js), it would be a great choice.
 
+## Installation
+
+In your Rails >= 3.1 app, add it to your `Gemfile`:
+
+```
+group :test, :development do
+  gem 'mocha_rails'
+end
+```
+
 ## Configuration
 
 To access your Mocha test suite at `/mocha`, add the following line inside your Rails `config/routes.rb`,
@@ -28,6 +38,7 @@ You must create a `mocha-suite.js` or `mocha-suite.js.coffee` Sprockets manifest
 one of these locations:
 
 * `test/javascripts`
+or
 * `spec/javascripts`
 
 This directory is also the location for your Mocha tests.
@@ -39,4 +50,29 @@ Here is a sample `mocha-suite.js.coffee` manifest:
 #= require_tree .
 ```
 
-Here is a sample test in the same directory, `array-test.js.coffee`:
+Here is a sample Mocha test with an Expect assertion in the same directory, `array-test.js.coffee`:
+
+```
+describe 'Array', ->
+  array = null
+
+  before ->
+    array = [1,2,3]
+
+  describe '#indexOf()', ->
+
+    it 'should return -1 when not present', ->
+      expect(array.indexOf(4)).to.equal(-1)
+```
+
+Start your server and go to `http://localhost:3000/mocha`, you should see Mocha's very attractive results page.
+
+## Credits
+
+* Chris Smith <quartzmo>
+
+MochaRails was inspired by the design of [Jasminerice](https://github.com/bradphelan/jasminerice).
+
+## License
+
+MIT-LICENSE
