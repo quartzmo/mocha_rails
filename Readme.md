@@ -50,7 +50,7 @@ Here is a sample `mocha-suite.js.coffee` manifest:
 #= require_tree .
 ```
 
-Here is a sample Mocha test with an Expect assertion in the same directory, `array-test.js.coffee`:
+Here is a sample Mocha test including an Expect assertion, in a file `array-test.js.coffee` located in the same directory or below:
 
 ```
 describe 'Array', ->
@@ -69,7 +69,7 @@ Start your server and go to `http://localhost:3000/mocha`, you should see Mocha'
 
 ## Credits
 
-* Chris Smith <quartzmo>
+* Chris Smith
 
 MochaRails was inspired by the design of [Jasminerice](https://github.com/bradphelan/jasminerice).
 
