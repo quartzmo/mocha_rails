@@ -70,9 +70,8 @@ describe 'Array', ->
       expect(array.indexOf(4)).to.equal(-1)
 ```
 
-Start your server and open `http://localhost:3000/mocha`. You should see Mocha's very attractive results page. If you
-see a completely blank page, check your JavaScript console for errors. If you see an almost blank page, with a
-few zeros in the upper right corner, you just need to add some tests.
+Create these files, start your server, and open `http://localhost:3000/mocha`. You should see Mocha's very attractive results page. If you
+see a completely blank page, or an almost blank page with a few zeros in the upper right corner, check your JavaScript console for errors.
 
 ## Credits
 
