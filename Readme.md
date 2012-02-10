@@ -6,9 +6,8 @@ MochaRails integrates the [Mocha](http://visionmedia.github.com/mocha/) JavaScri
 
 MochaRails is a mountable Rails engine that serves a browser-based Mocha test suite, along with your production JavaScript files, via the Asset Pipeline.
 
-It loads [Expect](https://github.com/LearnBoost/expect.js) for assertions, although since Mocha is decoupled from the assertion library, you can
-use another assertion library if you choose (or even write your own.) For example, if browsers become compatible with
-[Should](https://github.com/visionmedia/should.js), it would be a great choice.
+It loads [Chai](http://chaijs.com) for assertions, although since Mocha is decoupled from the assertion library, you can
+use another assertion library if you choose (or even write your own.)
 
 The Mocha interface system allows developers to choose their style of DSL. MochaRails is hardcoded for now to the
 "BDD" interface, but if you want to write in one of the other styles, open an issue and I will make it configurable.
@@ -54,7 +53,7 @@ Here is a sample `mocha-suite.js.coffee` manifest:
 #= require_tree .
 ```
 
-Here is a sample Mocha test including an Expect assertion, in a file `array-test.js.coffee` located in the same directory or below:
+Here is a sample Mocha test including a should assertion, in a file `array-test.js.coffee` located in the same directory or below:
 
 ```
 describe 'Array', ->
@@ -65,7 +64,7 @@ describe 'Array', ->
   describe '#indexOf()', ->
 
     it 'should return -1 when not present', ->
-      expect(@array.indexOf(4)).to.equal(-1)
+      @array.indexOf(4).should.equal -1
 ```
 
 Create these files, start your server, and open `http://localhost:3000/mocha`. You should see Mocha's very attractive results page. If you

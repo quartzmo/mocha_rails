@@ -1,4 +1,4 @@
 //= require jquery
 //= require mocha
-//= require expect
+//= require chai
 //= require ./mocha-rails
