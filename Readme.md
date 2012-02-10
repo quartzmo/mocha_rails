@@ -51,7 +51,6 @@ This directory is also the location for your Mocha tests.
 Here is a sample `mocha-suite.js.coffee` manifest:
 
 ```
-#= require jquery
 #= require_tree .
 ```
 
@@ -59,15 +58,14 @@ Here is a sample Mocha test including an Expect assertion, in a file `array-test
 
 ```
 describe 'Array', ->
-  array = null
 
-  before ->
-    array = [1,2,3]
+  beforeEach ->
+    @array = [1,2,3]
 
   describe '#indexOf()', ->
 
     it 'should return -1 when not present', ->
-      expect(array.indexOf(4)).to.equal(-1)
+      expect(@array.indexOf(4)).to.equal(-1)
 ```
 
 Create these files, start your server, and open `http://localhost:3000/mocha`. You should see Mocha's very attractive results page. If you
