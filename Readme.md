@@ -22,10 +22,14 @@ group :test, :development do
 end
 ```
 MochaRails includes a convenient install generator that adds a route to `config/routes.rb` and adds a `mocha-suite.js`
-Sprockets manifest file to either `spec/javascripts` or `test/javascripts`. **You must run**:
+Sprockets manifest file to either `spec/javascripts` or `test/javascripts`.
+
+To install the required configuration, **you must run**:
+
 ```
 rails g mocha_rails:install
 ```
+
 The generator has a single option, `--mount`, which lets you specify the route to your test suite. The default
 route is `/mocha`.
 
@@ -36,11 +40,14 @@ as `app/assets/javascripts/example.js` and `test/javascripts/example.js.coffee`.
 **not** be loaded.
 
 One solution is to simply give your test files a different name, for example in `test/javascripts/mocha-suite.js`:
+
 ```
 //= require example
 //= require example-test
 ```
+
 However, if you prefer to give your test files the same name as your production files, you must then use a different path:
+
 ```
 //= require example
 //= require test/example
