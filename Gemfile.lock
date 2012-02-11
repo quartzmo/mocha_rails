@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mocha_rails (0.0.2)
+    mocha_rails (0.0.3)
       rails (>= 3.1.0)
 
 GEM
