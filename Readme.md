@@ -10,7 +10,7 @@ It loads [Chai](http://chaijs.com) for assertions, although since Mocha is decou
 use another assertion library if you choose (or even write your own.)
 
 The Mocha interface system allows developers to choose their style of DSL. MochaRails is hardcoded for now to the
-"BDD" interface, but if you want to write in one of the other styles, open an issue and I will make it configurable.
+"BDD" interface, but if you want to write in one of the other styles, please "+1" the open issue to make it configurable.
 
 ## Installation
 
@@ -21,39 +21,35 @@ group :test, :development do
   gem 'mocha_rails'
 end
 ```
-
-## Configuration
-
-To access your Mocha test suite at `/mocha`, **you must add** the following line inside your Rails `config/routes.rb`,
-within the block passed to `draw`.
-
+MochaRails includes a convenient install generator that adds a route to `config/routes.rb` and adds a `mocha-suite.js`
+Sprockets manifest file to either `spec/javascripts` or `test/javascripts`. **You must run**:
 ```
-mount MochaRails::Engine => "mocha" unless Rails.env.production?
+rails g mocha_rails:install
 ```
+The generator has a single option, `--mount`, which lets you specify the route to your test suite. The default
+route is `/mocha`.
 
-There is nothing special about the path `/mocha`, and you can name any path you like,
-as long as it doesn't conflict with any of your existing application paths.
+## Organizing your test files
 
-## Adding Mocha Tests
+Sprockets will not load two files with the same relative asset path and base name, even if they are located in different directories, such
+as `app/assets/javascripts/example.js` and `test/javascripts/example.js.coffee`. In this example, the test file will
+**not** be loaded.
 
-**You must create** a `mocha-suite.js` or `mocha-suite.js.coffee` Sprockets manifest file in
-one of these locations:
-
-* `test/javascripts`
-
-or
-
-* `spec/javascripts`
-
-This directory is also the location for your Mocha tests.
-
-Here is a sample `mocha-suite.js.coffee` manifest:
-
+One solution is to simply give your test files a different name, for example in `test/javascripts/mocha-suite.js`:
 ```
-#= require_tree .
+//= require example
+//= require example-test
+```
+However, if you prefer to give your test files the same name as your production files, you must then use a different path:
+```
+//= require example
+//= require test/example
 ```
 
-Here is a sample Mocha test including a should assertion, in a file `array-test.js.coffee` located in the same directory or below:
+## Adding a test
+
+To get you started, here is a sample Mocha test with a should style assertion, to be placed in a file
+`test/javascripts/array-test.js.coffee`:
 
 ```
 describe 'Array', ->
@@ -67,7 +63,9 @@ describe 'Array', ->
       @array.indexOf(4).should.equal -1
 ```
 
-Create these files, start your server, and open `http://localhost:3000/mocha`. You should see Mocha's very attractive results page. If you
+## Running
+
+Start your server, and open `http://localhost:3000/mocha`. You should see Mocha's very attractive results page. If you
 see a completely blank page, or an almost blank page with a few zeros in the upper right corner, check your JavaScript console for errors.
 
 ## Credits
