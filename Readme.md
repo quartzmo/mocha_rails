@@ -4,7 +4,7 @@ MochaRails integrates the [Mocha](http://visionmedia.github.com/mocha/) JavaScri
 
 ## Description
 
-MochaRails is a mountable Rails engine that serves a browser-based Mocha test suite, along with your production JavaScript files, via the Asset Pipeline.
+MochaRails is a mountable Rails engine that serves a browser-based Mocha test suite, along with your development JavaScript files, via the Asset Pipeline.
 
 It loads [Chai](http://chaijs.com) for assertions, although since Mocha is decoupled from the assertion library, you can
 use another assertion library if you choose (or even write your own.)
@@ -72,7 +72,7 @@ describe 'Array', ->
 
 ## Running
 
-Start your server, and open `http://localhost:3000/mocha`. You should see Mocha's very attractive results page. If you
+Start your server in development mode, and open `http://localhost:3000/mocha`. You should see Mocha's very attractive results page. If you
 see a completely blank page, or an almost blank page with a few zeros in the upper right corner, check your JavaScript console for errors.
 
 ## Credits
