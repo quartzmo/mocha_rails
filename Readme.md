@@ -22,7 +22,10 @@ group :test, :development do
 end
 ```
 MochaRails includes a convenient install generator that adds a route to `config/routes.rb` and adds a `mocha-suite.js`
-Sprockets manifest file to either `spec/javascripts` or `test/javascripts`.
+Sprockets manifest file to either `spec/javascripts` or `test/javascripts`. The `mocha-suite.js` file contains no `require`
+directives other than , you must add the requires for your tests yourself. Avoid using `require_tree .` which has caused an
+[issue](https://github.com/quartzmo/mocha_rails/issues/7), instead use more specific
+requires for each spec or test file, such as `//= require ./models/my-model-test`.
 
 To install the required configuration, **you must run**:
 
