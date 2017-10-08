@@ -1,6 +1,6 @@
 # MochaRails
 
-MochaRails integrates the [Mocha](http://visionmedia.github.com/mocha/) JavaScript test framework with the Rails (>= 3.1) Asset Pipeline.
+MochaRails integrates the [Mocha](http://mochajs.org/) JavaScript test framework with the Rails (>= 3.1) Asset Pipeline.
 
 **Note:** This project is modeled on [Jasminerice](https://github.com/bradphelan/jasminerice) and is fairly simple. If you want more features, please consider [Konacha](https://github.com/jfirebaugh/konacha), which provides a sandboxed server running on another port, a command-line task, fixtures, transactions, and other goodies. I will continue to maintain and upgrade MochaRails, however, so if its smaller feature set fits your needs, by all means please use it.
 
